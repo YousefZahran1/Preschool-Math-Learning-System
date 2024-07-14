@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preschool Math Lessons</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" sizes="5000x5000" href="logo_pre.png">
+    <style>
+        .lesson {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .lesson video {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .lesson button {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav1>
+        <button class="go-back" onclick="goBack()">&larr; Go Back</button>
+    </nav1>
+    <div class="container">
+        <h1>Preschool Math Lessons</h1>
+        <div class="lesson">
+            <h2>Numbers</h2>
+            <p>Learn how to count numbers!</p>
+            <button onclick="window.location.href='numbers.html'">Go to Numbers</button>
+        </div>
+        <div class="lesson">
+            <h2>Addition</h2>
+            <p>Learn how to add numbers!</p>
+            <video id="video-addition" width="320" height="240" controls>
+                <source src="addition.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="btn-addition" onclick="completeLesson('Addition')" disabled>Finish Lesson</button>
+        </div>
+        <div class="lesson">
+            <h2>Subtraction</h2>
+            <p>Learn how to subtract numbers!</p>
+            <video id="video-subtraction" width="320" height="240" controls>
+                <source src="subtraction.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="btn-subtraction" onclick="completeLesson('Subtraction')" disabled>Finish Lesson</button>
+        </div>
+        <div class="lesson">
+            <h2>Multiplication</h2>
+            <p>Learn how to multiply numbers!</p>
+            <video id="video-multiplication" width="320" height="240" controls>
+                <source src="multiplication.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="btn-multiplication" onclick="completeLesson('Multiplication')" disabled>Finish Lesson</button>
+        </div>
+        <div class="lesson">
+            <h2>Division</h2>
+            <p>Learn how to divide numbers!</p>
+            <video id="video-division" width="320" height="240" controls>
+                <source src="division.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button id="btn-division" onclick="completeLesson('Division')" disabled>Finish Lesson</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('video-addition').addEventListener('ended', function () {
+            let button = document.getElementById('btn-addition');
+            button.disabled = false;
+            button.innerText = 'Lesson Complete';
+        });
+        document.getElementById('video-subtraction').addEventListener('ended', function () {
+            let button = document.getElementById('btn-subtraction');
+            button.disabled = false;
+            button.innerText = 'Lesson Complete';
+        });
+        document.getElementById('video-multiplication').addEventListener('ended', function () {
+            let button = document.getElementById('btn-multiplication');
+            button.disabled = false;
+            button.innerText = 'Lesson Complete';
+        });
+        document.getElementById('video-division').addEventListener('ended', function () {
+            let button = document.getElementById('btn-division');
+            button.disabled = false;
+            button.innerText = 'Lesson Complete';
+        });
+
+        function completeLesson(lesson) {
+            fetch('saveProgress.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ activity: lesson, score: 1, total: 1, type: 'lesson', completed: true })
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert(lesson + ' lesson completed and progress saved!');
+                    } else {
+                        alert('Error saving progress for ' + lesson + ' lesson.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error saving progress.');
+                });
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

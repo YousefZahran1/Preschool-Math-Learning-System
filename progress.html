@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Progress</title>
+    <link rel="icon" type="image/x-icon" sizes="5000x5000" href="logo_pre.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add styles for the tabs */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #f0e8e8;
+            background-color: #e80a0a;
+        }
+        
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        
+        .tab button.active {
+            background-color: #1621c1;
+        }
+        
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #1e1e1e;
+            border-top: none;
+        }
+        
+        .tabcontent.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav1>
+            <button class="go-back" onclick="goBack()">&larr; Go Back</button>
+        </nav1>
+        <h1>Your Progress</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Games')">Games</button>
+            <button class="tablinks" onclick="openTab(event, 'Lessons')">Lessons</button>
+            <button class="tablinks" onclick="openTab(event, 'FinishedLessons')">Finished Lessons</button>
+        </div>
+        <div id="Games" class="tabcontent">
+            <h2>Game Progress</h2>
+            <div id="gameProgress">
+                <!-- Game progress data will be displayed here -->
+            </div>
+        </div>
+        <div id="Lessons" class="tabcontent">
+            <h2>Lesson Progress</h2>
+            <div id="lessonProgress">
+                <!-- Lesson progress data will be displayed here -->
+            </div>
+        </div>
+        <div id="FinishedLessons" class="tabcontent">
+            <h2>Finished Lessons</h2>
+            <div id="finishedLessons">
+                <!-- Finished lessons data will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('getProgress.php')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Add this line for debugging
+                    if (data.status !== 'success') {
+                        document.getElementById('gameProgress').innerText = data.message;
+                        document.getElementById('lessonProgress').innerText = data.message;
+                        document.getElementById('finishedLessons').innerText = data.message;
+                        return;
+                    }
+
+                    const gameProgress = data.game_progress;
+                    const lessonProgress = data.lesson_progress;
+
+                    const gameProgressDiv = document.getElementById('gameProgress');
+                    const lessonProgressDiv = document.getElementById('lessonProgress');
+                    const finishedLessonsDiv = document.getElementById('finishedLessons');
+
+                    if (gameProgress.length === 0) {
+                        gameProgressDiv.innerText = "No game progress data available.";
+                    } else {
+                        let gameHtml = '<table><tr><th>Activity</th><th>Score</th><th>Total</th><th>Completed</th></tr>';
+                        gameProgress.forEach(progress => {
+                            gameHtml += `<tr><td>${progress.activity}</td><td>${progress.score}</td><td>${progress.total}</td><td>${progress.completed ? 'Yes' : 'No'}</td></tr>`;
+                        });
+                        gameHtml += '</table>';
+                        gameProgressDiv.innerHTML = gameHtml;
+                    }
+
+                    if (lessonProgress.length === 0) {
+                        lessonProgressDiv.innerText = "No lesson progress data available.";
+                    } else {
+                        let lessonHtml = '<table><tr><th>Activity</th><th>Score</th><th>Total</th><th>Completed</th></tr>';
+                        lessonProgress.forEach(progress => {
+                            lessonHtml += `<tr><td>${progress.activity}</td><td>${progress.score}</td><td>${progress.total}</td><td>${progress.completed ? 'Yes' : 'No'}</td></tr>`;
+                        });
+                        lessonHtml += '</table>';
+                        lessonProgressDiv.innerHTML = lessonHtml;
+
+                        let finishedHtml = '<ul>';
+                        lessonProgress.forEach(progress => {
+                            if (progress.completed) {
+                                finishedHtml += `<li>${progress.activity}</li>`;
+                            }
+                        });
+                        finishedHtml += '</ul>';
+                        finishedLessonsDiv.innerHTML = finishedHtml;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('gameProgress').innerText = 'Error fetching progress data.';
+                    document.getElementById('lessonProgress').innerText = 'Error fetching progress data.';
+                    document.getElementById('finishedLessons').innerText = 'Error fetching finished lessons data.';
+                    console.error('Error:', error); // Add this line for debugging
+                });
+        });
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("show");
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("show");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

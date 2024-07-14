@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Numbers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" sizes="5000x5000" href="images/logo_pre.png">
+    <script src="numbers.js" defer></script>
+    <style>
+        .slide {
+            text-align: center;
+        }
+
+        .number {
+            font-size: 100px;
+            margin: 20px 0;
+        }
+
+        .spelling {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #finish:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <nav1>
+        <button class="go-back" onclick="window.history.back()">&larr; Go Back</button>
+    </nav1>
+    <div class="container">
+        <h1>Learn Numbers</h1>
+        <div id="carousel" class="carousel">
+            <!-- Numbers will be dynamically inserted here -->
+        </div>
+        <div class="carousel-buttons">
+            <button id="prev">&laquo; Prev</button>
+            <button id="next">Next &raquo;</button>
+        </div>
+    </div>
+</body>
+
+</html>

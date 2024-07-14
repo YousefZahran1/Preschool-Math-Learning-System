@@ -1,0 +1,257 @@
+/* General Styles */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #ffebcd;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fffacd;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #ff6347;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 1.2em;
+    color: #d2691e;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #ffa500;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ffa07a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #ff4500;
+    transform: scale(1.1);
+}
+
+nav {
+    display: flex;
+    color: #ff69b4;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffb6c1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+nav1 {
+    margin-right: 80%;
+    color: #ff69b4;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+nav1 button {
+    padding: 10px 20px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav1 button:hover {
+    background-color: #ff6347;
+    transform: scale(1.1);
+}
+
+nav button {
+    padding: 10px 20px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav button:hover {
+    background-color: #ff6347;
+    transform: scale(1.1);
+}
+
+.logout {
+    background-color: #ff4500;
+}
+
+.logout:hover {
+    background-color: #ff6347;
+}
+
+.go-back {
+    padding: 10px 20px;
+    background-color: #ba55d3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.go-back:hover {
+    background-color: #9400d3;
+    transform: scale(1.1);
+    margin-left: auto; /* Align to the left */
+}
+
+form {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #ffe4b5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+#game-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.game-option {
+    background-color: #ffe4b5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.game-option img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.game-option p {
+    font-size: 1.2em;
+    color: #d2691e;
+    margin: 0;
+}
+
+.game-option:hover {
+    transform: scale(1.1);
+    background-color: #ffdab9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ff7f50;
+    color: white;
+}
+
+td {
+    background-color: #ffe4b5;
+}
+
+.error {
+    color: #ff4500;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.welcome-message {
+    font-size: 1.5em;
+    color: #ff69b4;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.slide {
+    text-align: center;
+}
+
+.number {
+    font-size: 5em;
+    font-weight: bold;
+    color: #ff6347;
+}
+
+.spelling {
+    font-size: 2em;
+    color: #d2691e;
+}
+
+.carousel-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.carousel-buttons button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #ffa07a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-buttons button:hover {
+    background-color: #ff4500;
+}
+
